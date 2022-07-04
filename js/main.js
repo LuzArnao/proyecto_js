@@ -1,3 +1,8 @@
+// Cartel de Bienvenida
+
+alert("Bienvenido a nuestra tienda virtual seria un placer conocer tu nombre");
+
+
 // Solicitamos el nombre al usuario
 
 nombre = prompt("Por favor ingresa tu nombre");
