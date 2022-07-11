@@ -33,8 +33,8 @@ const arrayProductos = [producto1, producto2, producto3, producto4, producto5, p
 
 function validacionProducto (){
 
-    seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\n\nEscoge del 1 al 3 cual deseas adquirir");
-
+    seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\nProducto4: " + arrayProductos[3].nombre + " con un precio de: " + arrayProductos[3].precio + "\nProducto5: " + arrayProductos[4].nombre + " con un precio de: " + arrayProductos[4].precio + "\nProducto6: " + arrayProductos[5].nombre + " con un precio de: " + arrayProductos[5].precio + "\nProducto7: " + arrayProductos[6].nombre + " con un precio de: " + arrayProductos[6].precio + "\nProducto8: " + arrayProductos[7].nombre + " con un precio de: " + arrayProductos[7].precio + "\nProducto9: " + arrayProductos[8].nombre + " con un precio de: " + arrayProductos[8].precio + "\n\nEscoge del 1 al 9 cual deseas adquirir");
+        
     // Definimos el valor del producto en base a lo seleccionado por el usuario
 
     do{
@@ -43,7 +43,7 @@ function validacionProducto (){
     
         while(isNaN(seleccionaProducto)){
             alert("Debes ingresar un valor numerico");
-            seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\n\nEscoge del 1 al 3 cual deseas adquirir");
+            seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\nProducto4: " + arrayProductos[3].nombre + " con un precio de: " + arrayProductos[3].precio + "\nProducto5: " + arrayProductos[4].nombre + " con un precio de: " + arrayProductos[4].precio + "\nProducto6: " + arrayProductos[5].nombre + " con un precio de: " + arrayProductos[5].precio + "\nProducto7: " + arrayProductos[6].nombre + " con un precio de: " + arrayProductos[6].precio + "\nProducto8: " + arrayProductos[7].nombre + " con un precio de: " + arrayProductos[7].precio + "\nProducto9: " + arrayProductos[8].nombre + " con un precio de: " + arrayProductos[8].precio + "\n\nEscoge del 1 al 9 cual deseas adquirir");
         }
     
         // Validamos que dicho numero sea inferior a 3
@@ -93,7 +93,7 @@ function validacionProducto (){
         
         // en caso de ser mayor a 3 solicitamos que se ingrese un numero inferior al mismo
     
-        seleccionaProducto = prompt("Puedes seleccionar solo un producto del 1 al 3");
+        seleccionaProducto = prompt("Puedes seleccionar solo un producto del 1 al 9");
 
         if (seleccionaProducto > 0 && seleccionaProducto <= 9)
         {
@@ -142,7 +142,7 @@ function validacionProducto (){
     
         while(isNaN(seleccionaProducto)){
             alert("Debes ingresar un valor numerico");
-            seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\n\nEscoge del 1 al 3 cual deseas adquirir");
+            seleccionaProducto = prompt("Tenemos los siguientes productos disponibles:\nProducto1: " + arrayProductos[0].nombre + " con un precio de: " + arrayProductos[0].precio + "\nProducto2: " + arrayProductos[1].nombre + " con un precio de: " + arrayProductos[1].precio + "\nProducto3: " + arrayProductos[2].nombre + " con un precio de: " + arrayProductos[2].precio +  "\nProducto4: " + arrayProductos[3].nombre + " con un precio de: " + arrayProductos[3].precio + "\nProducto5: " + arrayProductos[4].nombre + " con un precio de: " + arrayProductos[4].precio + "\nProducto6: " + arrayProductos[5].nombre + " con un precio de: " + arrayProductos[5].precio + "\nProducto7: " + arrayProductos[6].nombre + " con un precio de: " + arrayProductos[6].precio + "\nProducto8: " + arrayProductos[7].nombre + " con un precio de: " + arrayProductos[7].precio + "\nProducto9: " + arrayProductos[8].nombre + " con un precio de: " + arrayProductos[8].precio + "\n\nEscoge del 1 al 9 cual deseas adquirir");
         }
     
     }while(seleccionaProducto > 9);
