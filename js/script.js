@@ -63,6 +63,30 @@ function validacionProducto (){
                     nombreSeleccion = arrayProductos[2].nombre;
                     valorSeleccion = arrayProductos[2].precio;
                     break
+                case "4":
+                    nombreSeleccion = arrayProductos[3].nombre;
+                    valorSeleccion = arrayProductos[3].precio;
+                    break
+                case "5":
+                    nombreSeleccion = arrayProductos[4].nombre;
+                    valorSeleccion = arrayProductos[4].precio;
+                    break
+                case "6":
+                    nombreSeleccion = arrayProductos[5].nombre;
+                    valorSeleccion = arrayProductos[5].precio;
+                    break
+                case "7":
+                    nombreSeleccion = arrayProductos[6].nombre;
+                    valorSeleccion = arrayProductos[6].precio;
+                    break
+                case "8":
+                    nombreSeleccion = arrayProductos[7].nombre;
+                    valorSeleccion = arrayProductos[7].precio;
+                    break
+                case "9":
+                    nombreSeleccion = arrayProductos[8].nombre;
+                    valorSeleccion = arrayProductos[8].precio;
+                    break
             }
             break
         } 
@@ -85,6 +109,30 @@ function validacionProducto (){
                 case "3":
                     nombreSeleccion = arrayProductos[2].nombre;
                     valorSeleccion = arrayProductos[2].precio;
+                    break
+                case "4":
+                    nombreSeleccion = arrayProductos[3].nombre;
+                    valorSeleccion = arrayProductos[3].precio;
+                    break
+                case "5":
+                    nombreSeleccion = arrayProductos[4].nombre;
+                    valorSeleccion = arrayProductos[4].precio;
+                    break
+                case "6":
+                    nombreSeleccion = arrayProductos[5].nombre;
+                    valorSeleccion = arrayProductos[5].precio;
+                    break
+                case "7":
+                    nombreSeleccion = arrayProductos[6].nombre;
+                    valorSeleccion = arrayProductos[6].precio;
+                    break
+                case "8":
+                    nombreSeleccion = arrayProductos[7].nombre;
+                    valorSeleccion = arrayProductos[7].precio;
+                    break
+                case "9":
+                    nombreSeleccion = arrayProductos[8].nombre;
+                    valorSeleccion = arrayProductos[8].precio;
                     break
             }
             break
@@ -180,9 +228,15 @@ alert("A continuacion podrá observar los detalles de su producto seleccionado")
 
 // Continua el acceso a la web para mostrar el producto seleccionado
 
-for (const producto of arrayProductos){
+const filtrado = arrayProductos.filter((elemento) => elemento.nombre.includes(nombreSeleccion))
 
-    if (producto.nombre === nombreSeleccion){
+for (const producto of filtrado) {
+
+    const descuento = filtrado.map((elemento) => {
+        return {
+            precio: elemento.precio * 0.85
+        }
+    })
 
         document.write("<div class='col-lg-4 col-md-6 col-sm-12 pb-1'>");
         document.write("<div class='card product-item border-0 mb-4'>"); 
@@ -190,11 +244,8 @@ for (const producto of arrayProductos){
         document.write("<div class='card-body border-left border-right text-center p-0 pt-4 pb-3'>");
         document.write("<h6 class='text-truncate mb-3'>" + producto.nombre + "</h6>");
         document.write("<div class='d-flex justify-content-center'>");
-        document.write("<h6>Precio: " + producto.precio + "</h6><h6>&nbsp;Cuotas: " + cuota + "</h6></div></div>");
+        document.write("<h6 class='text-muted ml-2'>Precio: <del>" + producto.precio + "</del></h6><h6>&nbsp;- 15% OFF: " + descuento[0].precio + "</h6><h6>&nbsp;- Cuotas: " + cuota + "</h6></div></div>");
         document.write("<div class='card-footer d-flex justify-content-between bg-light border'>");
         document.write("<a><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>");
-        document.write("<a><i class='fas fa-shopping-cart text-primary mr-1'></i>En el carro</a> </div> </div> </div>");
-    
-    }
-
+        document.write("<a><i class='fas fa-shopping-cart text-primary mr-1'></i>En el carro</a> </div> </div> </div>"); 
 }
