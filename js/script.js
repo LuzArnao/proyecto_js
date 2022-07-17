@@ -1,6 +1,6 @@
 // Construimos la clase para productos
 
-class producto {
+class Producto {
     constructor(id, nombre, color, talla, unidadPorTalla, precio, unidadesTotales, imagen) {
         this.id = id
         this.nombre = nombre
@@ -15,21 +15,22 @@ class producto {
 
 // Agregamos las entradas individuales para llenar el array segun el formato de la clase
 
-const producto1 = new producto(1, "Juguetes Kit Castigo", "Negro", ["S","M","XL"], ["45","55","50"], "7000", "155", "img/product-1.jpg")
-const producto2 = new producto(2, "Juguetes Kit Coneja", "Negro", ["S","M","XL"], ["40","40","40"], "6500", "120", "img/product-2.jpg")
-const producto3 = new producto(3, "Juguetes Kit Dulce Sueño", "Rojo", ["S","M","XL"], ["60","30","30"], "7500", "120", "img/product-3.jpg")
-const producto4 = new producto(4, "Juguetes Kit Diabla", "Rojo", ["S","M","XL"], ["20","25","66"], "8000", "111", "img/product-4.jpg")
-const producto5 = new producto(5, "Juguetes Kit Escape", "Amarillo", ["S","M","XL"], ["50","50","50"], "9500", "150", "img/product-5.jpg")
-const producto6 = new producto(6, "Juguetes Kit Algodon Dulce", "Rosa", ["S","M","XL"], ["40","40","50"], "10000", "130", "img/product-6.jpg")
-const producto7 = new producto(7, "Juguetes Kit Mienteme Despacio", "Negro", ["S","M","XL"], ["30","35","50"], "9500", "125", "img/product-7.jpg")
-const producto8 = new producto(8, "Juguetes Kit Guerrera", "Rojo", ["S","M","XL"], ["50","50","40"], "10000", "140", "img/product-8.jpg")
-const producto9 = new producto(9, "Juguetes Kit Sorpresa", "Negro", ["S","M","XL"], ["40","40","33"], "11000", "113", "img/product-1.jpg")
+const producto1 = new Producto(1, "Juguetes Kit Castigo", "Negro", ["S","M","XL"], ["45","55","50"], "7000", "155", "img/product-1.jpg")
+const producto2 = new Producto(2, "Juguetes Kit Coneja", "Negro", ["S","M","XL"], ["40","40","40"], "6500", "120", "img/product-2.jpg")
+const producto3 = new Producto(3, "Juguetes Kit Dulce Sueño", "Rojo", ["S","M","XL"], ["60","30","30"], "7500", "120", "img/product-3.jpg")
+const producto4 = new Producto(4, "Juguetes Kit Diabla", "Rojo", ["S","M","XL"], ["20","25","66"], "8000", "111", "img/product-4.jpg")
+const producto5 = new Producto(5, "Juguetes Kit Escape", "Amarillo", ["S","M","XL"], ["50","50","50"], "9500", "150", "img/product-5.jpg")
+const producto6 = new Producto(6, "Juguetes Kit Algodon Dulce", "Rosa", ["S","M","XL"], ["40","40","50"], "10000", "130", "img/product-6.jpg")
+const producto7 = new Producto(7, "Juguetes Kit Mienteme Despacio", "Negro", ["S","M","XL"], ["30","35","50"], "9500", "125", "img/product-7.jpg")
+const producto8 = new Producto(8, "Juguetes Kit Guerrera", "Rojo", ["S","M","XL"], ["50","50","40"], "10000", "140", "img/product-8.jpg")
+const producto9 = new Producto(9, "Juguetes Kit Sorpresa", "Negro", ["S","M","XL"], ["40","40","33"], "11000", "113", "img/product-1.jpg")
 
 // Creamos el array que va a contener todos los productos
 
 const arrayProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9]
 
 // creamos la funcion validacion de producto
+let seleccionaProducto = 0
 
 function validacionProducto (){
 
@@ -151,6 +152,8 @@ function validacionProducto (){
 
 // creamos la funcion calcular cuotas 
 
+let cuota = 0
+
 function calculoCuotas (){
 
     cuota = prompt("Seleccionaste el producto numero: " + nombreSeleccion + "\nEl cual tiene un precio de: "+ valorSeleccion + "\n\nEn cuantas cuotas quieres adquirirlo (1 a 18)");
@@ -194,9 +197,11 @@ function calculoCuotas (){
 
 // Solicitamos el nombre al usuario
 
-nombre = prompt("Por favor ingresa tu nombre");
+let nombre = prompt("Por favor ingresa tu nombre");
 
 // Creamos bucle de autenticacion de edad del usuario para evitar ingreso de menores de 18
+
+let edad = 0
 
 do{
     
@@ -238,14 +243,37 @@ for (const producto of filtrado) {
         }
     })
 
-        document.write("<div class='col-lg-4 col-md-6 col-sm-12 pb-1'>");
-        document.write("<div class='card product-item border-0 mb-4'>"); 
-        document.write("<div class='card-header product-img position-relative overflow-hidden bg-transparent border p-0'><img class='img-fluid w-100' src='" + producto.imagen + "' alt=''> </div>");
-        document.write("<div class='card-body border-left border-right text-center p-0 pt-4 pb-3'>");
-        document.write("<h6 class='text-truncate mb-3'>" + producto.nombre + "</h6>");
-        document.write("<div class='d-flex justify-content-center'>");
-        document.write("<h6 class='text-muted ml-2'>Precio: <del>" + producto.precio + "</del></h6><h6>&nbsp;- 15% OFF: " + descuento[0].precio + "</h6><h6>&nbsp;- Cuotas: " + cuota + "</h6></div></div>");
-        document.write("<div class='card-footer d-flex justify-content-between bg-light border'>");
-        document.write("<a><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>");
-        document.write("<a><i class='fas fa-shopping-cart text-primary mr-1'></i>En el carro</a> </div> </div> </div>"); 
+    /// Se construyen los elementos utilizando DOM
+
+    let contenedorProducto = document.createElement('div');
+
+    contenedorProducto.classList.add('col-lg-4', 'col-md-6', 'col-sm-12', 'pb-1');
+
+    contenedorProducto.innerHTML =  `<div class='card product-item border-0 mb-4'>
+                                        <div class='card-header product-img position-relative overflow-hidden bg-transparent border p-0'>
+                                            <img id='Imagen' class='img-fluid w-100' src='${producto.imagen}' alt=''> 
+                                        </div>
+                                        <div class='card-body border-left border-right text-center p-0 pt-4 pb-3'>
+                                            <h6 class='text-truncate mb-3'>${producto.nombre}</h6>
+                                            <div class='d-flex justify-content-center'>
+                                                <h6 class='text-muted ml-2'>Precio: <del>${producto.precio}</del></h6>
+                                                <h6>&nbsp;- 15% OFF: ${descuento[0].precio}</h6>
+                                                <h6>&nbsp;- Cuotas: ${cuota}</h6>
+                                            </div>
+                                        </div>
+                                        <div class='card-footer d-flex justify-content-between bg-light border'>
+                                            <a id='Detalles' class='btn btn-sm text-dark p-0'><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>
+                                            <a><i class='fas fa-shopping-cart text-primary mr-1'></i>En el carro</a> 
+                                        </div> 
+                                    </div>`;
+
+    document.body.appendChild(contenedorProducto);
 }
+
+/// Se agrega manejo de eventos al hacer click en detalles o en la imagen.
+
+let verDetalles = document.getElementById("Detalles");
+verDetalles.onclick = () => {alert("Hiciste Click en Detalles")}
+
+let imagenDetalle = document.getElementById("Imagen");
+imagenDetalle.onclick = () => {alert("Esta es la imagen de tu producto")}
