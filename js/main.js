@@ -111,22 +111,26 @@ function muestraProductos(array){
 
         // Agregamos descuento sobre los productos 
         
-        let descuento = producto.precio * 0.90
-    
         /// Se construyen los elementos utilizando DOM
     
         let contenedorProducto = document.createElement('div');
     
         contenedorProducto.classList.add('productoListado', 'col-lg-4', 'col-md-6', 'col-sm-12', 'pb-1');
-    
-        contenedorProducto.innerHTML =  `<div id="${producto.id}" class='card product-item border-0 mb-4'>
+        
+        // Desestructuración del producto usando sugarsyntax 
+
+        const { id, imagen, nombre, precio } = producto
+
+        let descuento = precio * 0.90
+
+        contenedorProducto.innerHTML =  `<div id="${id}" class='card product-item border-0 mb-4'>
                                             <div class='card-header product-img position-relative overflow-hidden bg-transparent border p-0'>
-                                                <img class='img-fluid w-100' src='${producto.imagen}' alt=''>
+                                                <img class='img-fluid w-100' src='${imagen}' alt=''>
                                             </div>
                                             <div class='card-body border-left border-right text-center p-0 pt-4 pb-3'>
-                                                <h6 class='text-truncate mb-3'>${producto.nombre}</h6>
+                                                <h6 class='text-truncate mb-3'>${nombre}</h6>
                                                 <div class='d-flex justify-content-center'>
-                                                    <h6>${descuento}</h6><h6 class='text-muted ml-2'><del>${producto.precio}</del></h6>
+                                                    <h6>${descuento}</h6><h6 class='text-muted ml-2'><del>${precio}</del></h6>
                                                 </div>
                                             </div>
                                             <div class='card-footer d-flex justify-content-between bg-light border'>
@@ -160,16 +164,22 @@ buscarPorNombre.addEventListener('input', () => {
 
 // Verificamos la cantidad de objetos en el carrito para la sesion actual.
 
-let carrito = sessionStorage.getItem('carrito');
-        if(carrito == null) {
-            carrito = [];
-            let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
-            mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
-        } else {
-            carrito = JSON.parse(carrito);
-            let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
-            mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
-        }
+/// Agregamos sugarsyntax operador logico OR para cambiar la carga del carrito
+
+const carrito = JSON.parse(sessionStorage.getItem('carrito')) || []
+let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
+mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
+
+/* let carrito = sessionStorage.getItem('carrito');
+if(carrito == null) {
+    /// carrito = [];
+    let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
+    mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
+} else {
+    /// carrito = JSON.parse(carrito);
+    let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
+    mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
+} */
 
 // Cargamos productos al carrito
 
@@ -191,8 +201,6 @@ function cargaCarrito (producto) {
     let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
     mostrarCantidadProductosCarrito.innerHTML = `${traerObjetosCarritoJSON.length}`;  
 }
-
-
 
 function productoCarrito(arrayProductos){
     arrayProductos.forEach(producto => {
@@ -244,15 +252,23 @@ function consultarCarrito (){
             // console.log(calcularTotal)
             // console.log(totalPagar)
             // console.log(lista.join('\n'))
+            console.log(calcularTotal)
+
+            // Verificamos el producto mas caro utilizando spread sobre los totales.
+            console.log(Math.max(...calcularTotal))
 
             const totalPagar = calcularTotal.reduce((acumulador, elemento) => acumulador + elemento, 0)
             let accionUsuario = confirm("Tienes en el Carrito los siguientes productos\n\n" + lista.join('\n') + "\n\nMonto Total a Pagar: " + totalPagar + "\n\nPara vaciar el carrito presiona Cancelar")
+            
+            /// Utlizamos sugarsyntax de operador ternario
 
-            if (accionUsuario == true) {
+/*             if (accionUsuario == true) {
                 null
             } else {
                 vaciarElCarrito();
-            }
+            } */
+
+            accionUsuario == true ? null : vaciarElCarrito();
     }
         
 }
