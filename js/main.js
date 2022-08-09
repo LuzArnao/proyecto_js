@@ -123,7 +123,7 @@ function muestraProductos(array){
 
         let descuento = precio * 0.90
 
-        contenedorProducto.innerHTML =  `<div id="${id}" class='card product-item border-0 mb-4'>
+        contenedorProducto.innerHTML =  `<div class='card product-item border-0 mb-4'>
                                             <div class='card-header product-img position-relative overflow-hidden bg-transparent border p-0'>
                                                 <img class='img-fluid w-100' src='${imagen}' alt=''>
                                             </div>
@@ -135,7 +135,7 @@ function muestraProductos(array){
                                             </div>
                                             <div class='card-footer d-flex justify-content-between bg-light border'>
                                                 <a id="verDetalle" class='verDetalle btn btn-sm text-dark p-0'><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>
-                                                <a id="carrito" class='carrito btn btn-sm text-dark p-0'><i class='fas fa-shopping-cart text-primary mr-1'></i>Añadir al Carrito</a>
+                                                <a id="${id}" class='carrito btn btn-sm text-dark p-0'><i class='fas fa-shopping-cart text-primary mr-1'></i>Añadir al Carrito</a>
                                             </div>
                                         </div>`;        
     
@@ -208,11 +208,25 @@ function productoCarrito(arrayProductos){
         let agregarProd = document.getElementById(producto.id)
         agregarProd.onclick = () => {
             cargaCarrito(producto)
+            // Utilizamos la libreria Toastify para indicarle al usuario que agrego algo al carrito
+            Toastify({
+                text: "Agregado al Carrito",
+                duration: 1500,
+                style: {
+                    background: "linear-gradient(to right, #D19C97, #8a237e)",
+                  }
+            }).showToast();
         };
     });
 }
 
 productoCarrito(arrayProductos)
+
+function refrescarCarrito(){
+    let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
+        mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
+}
+    
 
 // Vaciamos el carrito
 
@@ -222,16 +236,57 @@ function vaciarElCarrito(){
 
 let vaciarCarrito = document.getElementById("vaciarCarrito")
     vaciarCarrito.addEventListener('click', () => {
-        vaciarElCarrito()
-    });
 
+        let carrito = sessionStorage.getItem('carrito');
+
+        if(carrito == null) {
+            // Utilizamos Libreria Toastify para señalarle al usuario que el carro esta vacio
+            Toastify({
+                text: "Carrito Vacio",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #D19C97, #8a237e)",
+                  }
+            }).showToast();
+        } else {
+            /// Utilizamos Libreria Sweet Alert para señarle al usuario las opciones de borrado
+            Swal.fire({
+                title: 'Por favor confirmar borrado del Carrito',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+        
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Borrado!',
+                        icon: 'success',
+                        text: 'Se eliminaron los elementos del carrito'
+                    })
+
+                    vaciarElCarrito()
+                    refrescarCarrito()
+                }
+            })
+        }
+    });
+    
 // Creamos funcion para ver que tiene el carrito
 
 function consultarCarrito (){
 
         let carrito = sessionStorage.getItem('carrito');
         if(carrito == null) {
-            alert("No tienes nada en el carrito");
+            openNav();
+            // Utilizamos Librearia Toastify para señalarle al usuario que el carro esta vacio
+            Toastify({
+                text: "Carrito Vacio",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #D19C97, #8a237e)",
+                  }
+            }).showToast();
         } else {
 
             carrito = JSON.parse(carrito)
@@ -258,8 +313,11 @@ function consultarCarrito (){
             console.log(Math.max(...calcularTotal))
 
             const totalPagar = calcularTotal.reduce((acumulador, elemento) => acumulador + elemento, 0)
-            let accionUsuario = confirm("Tienes en el Carrito los siguientes productos\n\n" + lista.join('\n') + "\n\nMonto Total a Pagar: " + totalPagar + "\n\nPara vaciar el carrito presiona Cancelar")
+            // let accionUsuario = confirm("Tienes en el Carrito los siguientes productos\n\n" + lista.join('\n') + "\n\nMonto Total a Pagar: " + totalPagar + "\n\nPara vaciar el carrito presiona Cancelar")
             
+            let pruebaTotal = document.getElementById("montoTotal")
+            pruebaTotal.innerHTML = totalPagar*0.90;
+
             /// Utlizamos sugarsyntax de operador ternario
 
 /*             if (accionUsuario == true) {
@@ -267,8 +325,8 @@ function consultarCarrito (){
             } else {
                 vaciarElCarrito();
             } */
-
-            accionUsuario == true ? null : vaciarElCarrito();
+            openNav();
+            
     }
         
 }
@@ -352,3 +410,59 @@ colorNegro.addEventListener('click', () => {filtroLateral(colorNegro,productosNe
 colorRojo.addEventListener('click', () => {filtroLateral(colorRojo,productosRojo)});
 colorAmarillo.addEventListener('click', () => {filtroLateral(colorAmarillo,productosAmarillo)});
 colorRosa.addEventListener('click', () => {filtroLateral(colorRosa,productosRosa)});
+
+
+// Creamos funcion para abrir un slide a mano izquierda
+
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+
+    const elementosCarrito = document.getElementsByClassName("productoEnCarrito");
+        while(elementosCarrito.length > 0){
+            elementosCarrito[0].parentNode.removeChild(elementosCarrito[0]);
+        }
+
+    if(sessionStorage.getItem("carrito")){
+        let carrito = JSON.parse(sessionStorage.getItem("carrito"))
+        carrito.forEach(productoEnCarrito => {
+
+            const { id, imagen, nombre, precio } = productoEnCarrito
+
+            divCarritoDeCompras = document.getElementById("mySidebar")
+            divCarritoDeCompras.innerHTML += `
+            <div class="productoEnCarrito" style="padding: 10px;" >
+            <div id="${id}" style="border-top-width: 1px; border-top-style: solid; border-top-color: black; display: flex;">
+                <div>
+                    <img style="width:70px; padding: 5px" src="${imagen}">
+                </div>
+
+                <div style="padding-top: 5px;">
+                    <div>
+                        <h6>${nombre}</h6>
+                    </div>
+                    <div style="display: flex;">
+                        <h6>$ ${precio}</h6>
+                    <div class="eliminarProductoEnCarrito">
+                        <i style="padding-left: 15px" class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            `
+            document.body.append(divCarritoDeCompras);
+        })
+    }else{
+        sessionStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+
+  }
+  
+// Creamos Funcion para cerrar el slide
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }

@@ -13,215 +13,231 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style.min.css" rel="stylesheet">
+
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row bg-secondary py-2 px-xl-5">
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
-                    <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Ayuda</a>
-                    <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Soporte</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-dark pl-2" href="">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+
+    <div id="mySidebar" class="sidebar">
+        
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="datosProductos">
+            <a id="costoTotal" style="text-align: center;">Costo Total</a>
+            <a style="text-align: center;" id="montoTotal"></a>
         </div>
-        <div class="row align-items-center py-3 px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Trunk</span>OfSex</h1>
-                </a>
-            </div>
-            <div class="col-lg-6 col-6 text-center">
-                <p>Tus deseos son ordenes</p>
-            </div>
-            <div class="col-lg-3 col-6 text-right">
-                <a class="btn border">
-                    <i id="botonCarrito" class="fas fa-shopping-cart text-primary"></i>
-                    <span id="carritoTotal" class="badge"></span>
-                </a>
-                <a href="" class="btn border">
-                    <i id="vaciarCarrito" class="fas text-primary">Vaciar Carrito</i>
-                    <span id="vaciarCarrito" class="badge"></span>
-                </a>
-            </div>
-        </div>
+        
+        
     </div>
-    
-    <!-- Shop Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-12">
-                <!-- Price Start -->
-                <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrar por precio</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">Todos los precios</label>
-                            <span class="totalProductos badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$6000 - $8.000</label>
-                            <span id="precioInferior" class="badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">$8.500 - $11.000</label>
-                            <span id="precioSuperior" class="badge border font-weight-normal"></span>
-                        </div>
-                        
-                    </form>
+
+    <div id="main">
+    <!-- Topbar Start -->
+        <div class="container-fluid">
+            <div class="row bg-secondary py-2 px-xl-5">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-dark" href="">FAQs</a>
+                        <span class="text-muted px-2">|</span>
+                        <a class="text-dark" href="">Ayuda</a>
+                        <span class="text-muted px-2">|</span>
+                        <a class="text-dark" href="">Soporte</a>
+                    </div>
                 </div>
-                <!-- Price End -->
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-dark pl-2" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center py-3 px-xl-5">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a href="" class="text-decoration-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Trunk</span>OfSex</h1>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-6 text-center">
+                    <p>Tus deseos son ordenes</p>
+                </div>
+                <div class="col-lg-3 col-6 text-right">
+                    <a class="btn border">
+                        <i id="botonCarrito" class="fas fa-shopping-cart text-primary"></i>
+                        <span id="carritoTotal" class="badge"></span>
+                    </a>
+                    <a class="btn border">
+                        <i id="vaciarCarrito" class="fa fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Shop Start -->
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <!-- Shop Sidebar Start -->
+                <div class="col-lg-3 col-md-12">
+                    <!-- Price Start -->
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filtrar por precio</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="price-all">
+                                <label class="custom-control-label" for="price-all">Todos los precios</label>
+                                <span class="totalProductos badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-1">
+                                <label class="custom-control-label" for="price-1">$6000 - $8.000</label>
+                                <span id="precioInferior" class="badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-2">
+                                <label class="custom-control-label" for="price-2">$8.500 - $11.000</label>
+                                <span id="precioSuperior" class="badge border font-weight-normal"></span>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <!-- Price End -->
+                    
+                    <!-- Color Start -->
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="color-all">
+                                <label class="custom-control-label" for="price-all">Todos los Colores</label>
+                                <span class="totalProductos badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-1">
+                                <label class="custom-control-label" for="color-1">Negro</label>
+                                <span id="productoNegro" class="badge border font-weight-normal"></span>
+                            </div>
+                            
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-2">
+                                <label class="custom-control-label" for="color-2">Rojo</label>
+                                <span id="productoRojo" class="badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-3">
+                                <label class="custom-control-label" for="color-3">Amarillo</label>
+                                <span id="productoAmarillo" class="badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="color-4">
+                                <label class="custom-control-label" for="color-4">Rosa</label>
+                                <span id="productoRosa" class="badge border font-weight-normal"></span>
+                            </div>
+                        </form>
+                    </div>
                 
-                <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">Todos los Colores</label>
-                            <span class="totalProductos badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Negro</label>
-                            <span id="productoNegro" class="badge border font-weight-normal"></span>
-                        </div>
+                    <!-- Size Start -->
+                    <div class="mb-5">
+                        <h5 class="font-weight-semi-bold mb-4">Filtrar por Talla</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="size-all">
+                                <label class="custom-control-label" for="size-all">Todas las Tallas</label>
+                                <span class="totalProductos badge border font-weight-normal"></span>
+                            </div>
                         
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">Rojo</label>
-                            <span id="productoRojo" class="badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Amarillo</label>
-                            <span id="productoAmarillo" class="badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Rosa</label>
-                            <span id="productoRosa" class="badge border font-weight-normal"></span>
-                        </div>
-                    </form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-1">
+                                <label class="custom-control-label" for="size-1">S</label>
+                                <span id="tallaS" class="badge border font-weight-normal"></span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-2">
+                                <label class="custom-control-label" for="size-2">M</label>
+                                <span id="tallaM" class="badge border font-weight-normal"></span>
+                            </div>
+                        
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="size-3">
+                                <label class="custom-control-label" for="size-3">XL</label>
+                                <span id="tallaXL" class="badge border font-weight-normal"></span>
+                            </div>
+                        </form>
+                    </div>
+                
                 </div>
             
-                <!-- Size Start -->
-                <div class="mb-5">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrar por Talla</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">Todas las Tallas</label>
-                            <span class="totalProductos badge border font-weight-normal"></span>
-                        </div>
-                       
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-1">
-                            <label class="custom-control-label" for="size-1">S</label>
-                            <span id="tallaS" class="badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-2">
-                            <label class="custom-control-label" for="size-2">M</label>
-                            <span id="tallaM" class="badge border font-weight-normal"></span>
-                        </div>
-                       
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="size-3">
-                            <label class="custom-control-label" for="size-3">XL</label>
-                            <span id="tallaXL" class="badge border font-weight-normal"></span>
-                        </div>
-                    </form>
-                </div>
-              
-            </div>
-          
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-12">
-                <div class="mostrarProductos row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
-                                <div class="input-group">
-                                    <input id="buscaNombre" type="text" class="form-control" placeholder="Buscar por nombre">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
-                                            <i class="fa fa-search"></i>
-                                        </span>
+                <!-- Shop Product Start -->
+                <div class="col-lg-9 col-md-12">
+                    <div class="mostrarProductos row pb-3">
+                        <div class="col-12 pb-1">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <form action="">
+                                    <div class="input-group">
+                                        <input id="buscaNombre" type="text" class="form-control" placeholder="Buscar por nombre">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-transparent text-primary">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+                <!-- Shop Product End -->
             </div>
-            <!-- Shop Product End -->
         </div>
-    </div>
     <!-- Shop End -->
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">Trunk</span>OfSex</h1>
-                </a>
-                <p>"Nada más sexy que un hombre que sabe cuándo ser vulgar y cuándo un caballero."</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Av. Callao, Buenos Aires</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@trunkofsex.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+54 911 7005-04-75</p>
+        <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                    <a href="" class="text-decoration-none">
+                        <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">Trunk</span>OfSex</h1>
+                    </a>
+                    <p>"Nada más sexy que un hombre que sabe cuándo ser vulgar y cuándo un caballero."</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Av. Callao, Buenos Aires</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@trunkofsex.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+54 911 7005-04-75</p>
+                </div>
             </div>
-        </div>
-        <div class="row border-top border-light mx-xl-5 py-4">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Trunk OfSex</a> Reservados todos los derechos.      
-               </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
+            <div class="row border-top border-light mx-xl-5 py-4">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-dark">
+                        &copy; <a class="text-dark font-weight-semi-bold" href="#">Trunk OfSex</a> Reservados todos los derechos.      
+                </p>
+                </div>
+                <div class="col-md-6 px-xl-0 text-center text-md-right">
+                    <img class="img-fluid" src="img/payments.png" alt="">
+                </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
     <!-- Javascripts -->
-
     <script src="js/main.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
