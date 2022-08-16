@@ -29,81 +29,125 @@ const producto9 = new Producto(9, "Juguetes Kit Sorpresa", "Negro", ["S","XL"], 
 
 const arrayProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9]
 
-// Los siguiente comentarios pertenecen a las lineas 37 a 39
-// 1. Contamos la cantidad total de productos que tenemos  en el array o bolsita
-// 2. Creamos una letiable que permite llamar a las diferentes etiquetas HTML desde su valor de Class
-// 3 - 5. Una vez que llamamos las etiquetas por su clase, les imprimimos el valor total a cada una con la ayuda de un FOR
+// Todos los filtros actuan a traves de una funcion asincronica utlizando fetch 
 
-let cantidadProductos = arrayProductos.length; // linea 1
-let mostrarTotal = document.getElementsByClassName("totalProductos"); // linea 2
-for (const mostrar of mostrarTotal) { // linea 3
-    mostrar.innerHTML = `${cantidadProductos}`; // linea 4
-} // linea 5
+const productosTotales = async () => {
 
-// Los siguiente comentarios pertenecen a las lineas 46 a 49
-// 1 - 2. Contamos la cantidad total de productos que tenemos  en el array, utilizando un filtro sobre el precio de los productos
-// 3. Creamos una variable que permite llamar a un elemento HTML desde su valor de ID
-// 4. Una vez que llamamos a la variable por el ID le otorgamos como valor la cantidad total de productos que obtuvimos anteriormente
-// Conteo de productos inferiores a 8000
+    const response = await fetch('data/productos.json')
+    const data = await response.json()
 
-let rangoPreciosInferior = arrayProductos.filter((elemento) => elemento.precio <= 8000) // linea 1
-cantidadProductosPrecioInferior = rangoPreciosInferior.length // linea 2
-let mostrarCantidadPrecioInferior = document.getElementById("precioInferior"); // linea 3
-mostrarCantidadPrecioInferior.innerHTML = `${cantidadProductosPrecioInferior}`; // linea 4
+    // Conteo de productos Inferiores a 8000
 
-// De aca en adelante se repite el mismo proceso descrito en las lineas 41 a 44 solo cambiamos los tipos de filtro.
-// Conteo de productos Superiores a 8000
-let rangoPreciosSuperior = arrayProductos.filter((elemento) => elemento.precio > 8000)
-cantidadProductosPrecioSuperior = rangoPreciosSuperior.length
-let mostrarCantidadPrecioSuperior = document.getElementById("precioSuperior");
-mostrarCantidadPrecioSuperior.innerHTML = `${cantidadProductosPrecioSuperior}`;
+    let rangoPreciosInferior = data.filter((elemento) => elemento.precio <= 8000) // linea 1
+    cantidadProductosPrecioInferior = rangoPreciosInferior.length // linea 2
+    let mostrarCantidadPrecioInferior = document.getElementById("precioInferior"); // linea 3
+    mostrarCantidadPrecioInferior.innerHTML = `${cantidadProductosPrecioInferior}`; // linea 4
 
-// Conteo de productos Negros
-let productosNegro = arrayProductos.filter((elemento) => elemento.color.includes("Negro"));
-cantidadProductosNegro = productosNegro.length
-let mostrarCantidadProductosNegro = document.getElementById("productoNegro")
-mostrarCantidadProductosNegro.innerHTML = `${cantidadProductosNegro}`;
+    // Conteo de productos Superiores a 8000
 
-// Conteo de productos Rojos
-let productosRojo = arrayProductos.filter((elemento) => elemento.color.includes("Rojo"));
-cantidadProductosRojo = productosRojo.length
-let mostrarCantidadProductosRojo = document.getElementById("productoRojo")
-mostrarCantidadProductosRojo.innerHTML = `${cantidadProductosRojo}`;
+    let rangoPreciosSuperior = data.filter((elemento) => elemento.precio > 8000)
+    cantidadProductosPrecioSuperior = rangoPreciosSuperior.length
+    let mostrarCantidadPrecioSuperior = document.getElementById("precioSuperior");
+    mostrarCantidadPrecioSuperior.innerHTML = `${cantidadProductosPrecioSuperior}`;
 
-// Conteo de productos Amarillos
-let productosAmarillo = arrayProductos.filter((elemento) => elemento.color.includes("Amarillo"));
-cantidadProductosAmarillo = productosAmarillo.length
-let mostrarCantidadProductosAmarillo = document.getElementById("productoAmarillo")
-mostrarCantidadProductosAmarillo.innerHTML = `${cantidadProductosAmarillo}`;
+    // Conteo de productos Negros
 
-// Conteo de productos Rosas
-let productosRosa = arrayProductos.filter((elemento) => elemento.color.includes("Rosa"));
-cantidadProductosRosa = productosRosa.length
-let mostrarCantidadProductosRosa = document.getElementById("productoRosa")
-mostrarCantidadProductosRosa.innerHTML = `${cantidadProductosRosa}`;
+    let productosNegro = data.filter((elemento) => elemento.color.includes("Negro"));
+    cantidadProductosNegro = productosNegro.length
+    let mostrarCantidadProductosNegro = document.getElementById("productoNegro")
+    mostrarCantidadProductosNegro.innerHTML = `${cantidadProductosNegro}`;
 
-// Conteo de productos talla S
+    // Conteo de productos Rojos
 
-let productosTallaS = arrayProductos.filter((elemento) => elemento.talla.includes("S"))
-cantidadProductosTallaS = productosTallaS.length
-let mostrarCantidadProductosTallaS = document.getElementById("tallaS")
-mostrarCantidadProductosTallaS.innerHTML = `${cantidadProductosTallaS}`;
+    let productosRojo = data.filter((elemento) => elemento.color.includes("Rojo"));
+    cantidadProductosRojo = productosRojo.length
+    let mostrarCantidadProductosRojo = document.getElementById("productoRojo")
+    mostrarCantidadProductosRojo.innerHTML = `${cantidadProductosRojo}`;
 
-// Conteo de productos talla M
+    // Conteo de productos Amarillos
 
-let productosTallaM = arrayProductos.filter((elemento) => elemento.talla.includes("M"))
-cantidadProductosTallaM = productosTallaM.length
-let mostrarCantidadProductosTallaM = document.getElementById("tallaM")
-mostrarCantidadProductosTallaM.innerHTML = `${cantidadProductosTallaM}`;
+    let productosAmarillo = data.filter((elemento) => elemento.color.includes("Amarillo"));
+    cantidadProductosAmarillo = productosAmarillo.length
+    let mostrarCantidadProductosAmarillo = document.getElementById("productoAmarillo")
+    mostrarCantidadProductosAmarillo.innerHTML = `${cantidadProductosAmarillo}`;
 
-// Conteo de productos talla XL
+    // Conteo de productos Rosas
+    let productosRosa = data.filter((elemento) => elemento.color.includes("Rosa"));
+    cantidadProductosRosa = productosRosa.length
+    let mostrarCantidadProductosRosa = document.getElementById("productoRosa")
+    mostrarCantidadProductosRosa.innerHTML = `${cantidadProductosRosa}`;
 
-let productosTallaXL = arrayProductos.filter((elemento) => elemento.talla.includes("XL"))
-cantidadProductosTallaXL = productosTallaXL.length
-let mostrarCantidadProductosTallaXL = document.getElementById("tallaXL")
-mostrarCantidadProductosTallaXL.innerHTML = `${cantidadProductosTallaXL}`;
+    // Conteo de productos talla S
 
-// Creamos una funcion que muestra los productos
+    let productosTallaS = data.filter((elemento) => elemento.tallas[0]["S"] > 0)
+    cantidadProductosTallaS = productosTallaS.length
+    let mostrarCantidadProductosTallaS = document.getElementById("tallaS")
+    mostrarCantidadProductosTallaS.innerHTML = `${cantidadProductosTallaS}`;
+
+    // Conteo de productos talla M
+
+    let productosTallaM = data.filter((elemento) => elemento.tallas[0]["M" ] > 0)
+    cantidadProductosTallaM = productosTallaM.length
+    let mostrarCantidadProductosTallaM = document.getElementById("tallaM")
+    mostrarCantidadProductosTallaM.innerHTML = `${cantidadProductosTallaM}`;
+
+    // Conteo de productos talla XL
+
+    let productosTallaXL = data.filter((elemento) => elemento.tallas[0]["XL"] > 0)
+    cantidadProductosTallaXL = productosTallaXL.length
+    let mostrarCantidadProductosTallaXL = document.getElementById("tallaXL")
+    mostrarCantidadProductosTallaXL.innerHTML = `${cantidadProductosTallaXL}`;
+
+    // Conteo Total de productos
+
+    let cantidadProductos = data.length
+    let mostrarTotal = document.getElementsByClassName("totalProductos");
+
+    for (const mostrar of mostrarTotal) {
+        mostrar.innerHTML = `${cantidadProductos}`;
+    }
+
+    /// Elemetos para Filtrar por Precio
+
+    let todosLosPrecios = document.getElementById("price-all")
+    let preciosBajos = document.getElementById("price-1")
+    let preciosAltos = document.getElementById("price-2")
+
+    todosLosPrecios.addEventListener('click', () => {filtroLateral(todosLosPrecios,data)});
+    preciosAltos.addEventListener('click', () => {filtroLateral(preciosAltos,rangoPreciosSuperior)});
+    preciosBajos.addEventListener('click', () => {filtroLateral(preciosBajos,rangoPreciosInferior)});
+
+    /// Elementos para Filtrar por Talla
+
+    let traerTodasLasTallas = document.getElementById("size-all")
+    let traerTallaS = document.getElementById("size-1")
+    let traerTallaM = document.getElementById("size-2")
+    let traerTallaXL = document.getElementById("size-3")
+
+    traerTodasLasTallas.addEventListener('click', () => {filtroLateral(traerTodasLasTallas,data)});
+    traerTallaS.addEventListener('click', () => {filtroLateral(traerTallaS,productosTallaS)});
+    traerTallaM.addEventListener('click', () => {filtroLateral(traerTallaM,productosTallaM)});
+    traerTallaXL.addEventListener('click', () => {filtroLateral(traerTallaXL,productosTallaXL)});
+
+    /// Elementos para filtrar por Color
+
+    let todosLosColores = document.getElementById("color-all")
+    let colorNegro = document.getElementById("color-1")
+    let colorRojo = document.getElementById("color-2")
+    let colorAmarillo = document.getElementById("color-3")
+    let colorRosa = document.getElementById("color-4")
+
+    todosLosColores.addEventListener('click', () => { filtroLateral(todosLosColores,data)});
+    colorNegro.addEventListener('click', () => {filtroLateral(colorNegro,productosNegro)});
+    colorRojo.addEventListener('click', () => {filtroLateral(colorRojo,productosRojo)});
+    colorAmarillo.addEventListener('click', () => {filtroLateral(colorAmarillo,productosAmarillo)});
+    colorRosa.addEventListener('click', () => {filtroLateral(colorRosa,productosRosa)});
+
+}
+
+productosTotales()
+
+// Creamos una funcion que muestra los productos */
 
 function muestraProductos(array){
 
@@ -169,17 +213,6 @@ buscarPorNombre.addEventListener('input', () => {
 const carrito = JSON.parse(sessionStorage.getItem('carrito')) || []
 let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
 mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
-
-/* let carrito = sessionStorage.getItem('carrito');
-if(carrito == null) {
-    /// carrito = [];
-    let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
-    mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
-} else {
-    /// carrito = JSON.parse(carrito);
-    let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
-    mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
-} */
 
 // Cargamos productos al carrito
 
@@ -265,8 +298,10 @@ let vaciarCarrito = document.getElementById("vaciarCarrito")
                         text: 'Se eliminaron los elementos del carrito'
                     })
 
+                    
                     vaciarElCarrito()
                     refrescarCarrito()
+                    
                 }
             })
         }
@@ -307,10 +342,10 @@ function consultarCarrito (){
             // console.log(calcularTotal)
             // console.log(totalPagar)
             // console.log(lista.join('\n'))
-            console.log(calcularTotal)
+            //console.log(calcularTotal)
 
             // Verificamos el producto mas caro utilizando spread sobre los totales.
-            console.log(Math.max(...calcularTotal))
+            //console.log(Math.max(...calcularTotal))
 
             const totalPagar = calcularTotal.reduce((acumulador, elemento) => acumulador + elemento, 0)
             // let accionUsuario = confirm("Tienes en el Carrito los siguientes productos\n\n" + lista.join('\n') + "\n\nMonto Total a Pagar: " + totalPagar + "\n\nPara vaciar el carrito presiona Cancelar")
@@ -375,48 +410,9 @@ function filtroLateral (checkboxElem,productoFiltrar) {
 
 }
 
-/// Elemetos para Filtrar por Precio
-
-let todosLosPrecios = document.getElementById("price-all")
-let preciosBajos = document.getElementById("price-1")
-let preciosAltos = document.getElementById("price-2")
-
-todosLosPrecios.addEventListener('click', () => {filtroLateral(todosLosPrecios,arrayProductos)});
-preciosAltos.addEventListener('click', () => {filtroLateral(preciosAltos,rangoPreciosSuperior)});
-preciosBajos.addEventListener('click', () => {filtroLateral(preciosBajos,rangoPreciosInferior)});
-
-/// Elementos para Filtrar por Talla
-
-let traerTodasLasTallas = document.getElementById("size-all")
-let traerTallaS = document.getElementById("size-1")
-let traerTallaM = document.getElementById("size-2")
-let traerTallaXL = document.getElementById("size-3")
-
-traerTodasLasTallas.addEventListener('click', () => {filtroLateral(traerTodasLasTallas,arrayProductos)});
-traerTallaS.addEventListener('click', () => {filtroLateral(traerTallaS,productosTallaS)});
-traerTallaM.addEventListener('click', () => {filtroLateral(traerTallaM,productosTallaM)});
-traerTallaXL.addEventListener('click', () => {filtroLateral(traerTallaXL,productosTallaXL)});
-
-/// Elementos para filtrar por Color
-
-let todosLosColores = document.getElementById("color-all")
-let colorNegro = document.getElementById("color-1")
-let colorRojo = document.getElementById("color-2")
-let colorAmarillo = document.getElementById("color-3")
-let colorRosa = document.getElementById("color-4")
-
-todosLosColores.addEventListener('click', () => { filtroLateral(todosLosColores,arrayProductos)});
-colorNegro.addEventListener('click', () => {filtroLateral(colorNegro,productosNegro)});
-colorRojo.addEventListener('click', () => {filtroLateral(colorRojo,productosRojo)});
-colorAmarillo.addEventListener('click', () => {filtroLateral(colorAmarillo,productosAmarillo)});
-colorRosa.addEventListener('click', () => {filtroLateral(colorRosa,productosRosa)});
-
-
 // Creamos funcion para abrir un slide a mano izquierda
 
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+function actualizaCarritoLateral () {
 
     const elementosCarrito = document.getElementsByClassName("productoEnCarrito");
         while(elementosCarrito.length > 0){
@@ -458,6 +454,12 @@ function openNav() {
         sessionStorage.setItem("carrito", JSON.stringify(carrito))
     }
 
+}
+
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    actualizaCarritoLateral()
   }
   
 // Creamos Funcion para cerrar el slide

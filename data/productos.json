@@ -1,0 +1,11 @@
+[   
+    {"id": 1, "nombre": "Juguetes Kit Castigo", "color": "Negro", "tallas": [{"XL": 50}], "precio": "9000", "stockTotal": "50", "imagen": "img/product-1.jpg"},
+    {"id": 2, "nombre": "Juguetes Kit Coneja", "color": "Negro", "tallas": [{"M": 40}, {"XL": 40}], "precio": "9500", "stockTotal": "80", "imagen": "img/product-2.jpg"},
+    {"id": 3, "nombre": "Juguetes Kit Dulce Sueño", "color": "Rojo","tallas": [{"S": 60},{"M": 30},{"XL": 30}], "precio": "11200", "stockTotal": "120", "imagen": "img/product-3.jpg"},
+    {"id": 4, "nombre": "Juguetes Kit Diabla", "color": "Rojo", "tallas": [{"S": 20},{"M": 66}], "precio": "8000", "stockTotal": "86", "imagen": "img/product-4.jpg"},
+    {"id": 5, "nombre": "Juguetes Kit Escape", "color": "Amarillo", "tallas": [{"M": 50},{"XL": 50}], "precio": "7500", "stockTotal": "100", "imagen": "img/product-5.jpg"},
+    {"id": 6, "nombre": "Juguetes Kit Algodon Dulce", "color": "Rosa", "tallas": [{"S": 40},{"XL": 50}], "precio": "10000", "stockTotal": "90", "imagen": "img/product-6.jpg"},
+    {"id": 7, "nombre": "Juguetes Kit Mienteme Despacio", "color": "Negro", "tallas": [{"S": 30},{"M": 35},{"XL": 50}], "precio": "9500", "stockTotal": "125", "imagen": "img/product-7.jpg"},
+    {"id": 8, "nombre": "Juguetes Kit Guerrera", "color": "Rojo", "tallas": [{"M": 50},{"XL": 40}], "precio": "6900", "stockTotal": "90", "imagen": "img/product-8.jpg"},
+    {"id": 9, "nombre": "Juguetes Kit Sorpresa", "color": "Negro", "tallas": [{"S": 40},{"XL": 40}], "precio": "11000", "stockTotal": "80", "imagen": "img/product-1.jpg"}
+]
