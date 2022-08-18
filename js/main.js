@@ -178,7 +178,7 @@ function muestraProductos(array){
                                                 </div>
                                             </div>
                                             <div class='card-footer d-flex justify-content-between bg-light border'>
-                                                <a id="verDetalle" class='verDetalle btn btn-sm text-dark p-0'><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>
+                                                <a id="${nombre}" class='verDetalle btn btn-sm text-dark p-0'><i class='fas fa-eye text-primary mr-1'></i>Ver Detalle</a>
                                                 <a id="${id}" class='carrito btn btn-sm text-dark p-0'><i class='fas fa-shopping-cart text-primary mr-1'></i>Añadir al Carrito</a>
                                             </div>
                                         </div>`;        
@@ -235,6 +235,46 @@ function cargaCarrito (producto) {
     mostrarCantidadProductosCarrito.innerHTML = `${traerObjetosCarritoJSON.length}`;  
 }
 
+function verDetalles(arrayProductos){
+    arrayProductos.forEach(producto => {
+
+        let agregarProd = document.getElementById(producto.nombre)
+        agregarProd.onclick = () => {
+
+            Swal.fire({
+                title: ''+ producto.nombre +'',
+                html:
+                    '<div style="display: flex;Justify-content: space-between"><img class="img-fluid w-50" src="' + producto.imagen + '" alt="">'+
+                    '<div"><b>Color: </b>' + producto.color + '<br>' +
+                    '<b>Tallas Disponibles: </b>' + producto.talla + '<br>' +
+                    '<b>Precio: </b>' + producto.precio + '<br>' +
+                    '<b>Stock: </b>' + producto.unidadesTotales + ' Unidades<br>',
+              })
+        };
+    });
+}
+
+verDetalles(arrayProductos)
+
+function productoCarrito(arrayProductos){
+    arrayProductos.forEach(producto => {
+
+        let agregarProd = document.getElementById(producto.id)
+        agregarProd.onclick = () => {
+            cargaCarrito(producto)
+            // Utilizamos la libreria Toastify para indicarle al usuario que agrego algo al carrito
+            Toastify({
+                text: "Agregado al Carrito",
+                duration: 1500,
+                style: {
+                    background: "linear-gradient(to right, #D19C97, #8a237e)",
+                  }
+            }).showToast();
+        };
+    });
+}
+
+
 function productoCarrito(arrayProductos){
     arrayProductos.forEach(producto => {
 
@@ -259,7 +299,6 @@ function refrescarCarrito(){
     let mostrarCantidadProductosCarrito = document.getElementById("carritoTotal")
         mostrarCantidadProductosCarrito.innerHTML = `${carrito.length}`;
 }
-    
 
 // Vaciamos el carrito
 
@@ -338,28 +377,11 @@ function consultarCarrito (){
                 return Number(str);
             })
 
-            // console.log(calcularTotalStr)
-            // console.log(calcularTotal)
-            // console.log(totalPagar)
-            // console.log(lista.join('\n'))
-            //console.log(calcularTotal)
-
-            // Verificamos el producto mas caro utilizando spread sobre los totales.
-            //console.log(Math.max(...calcularTotal))
-
             const totalPagar = calcularTotal.reduce((acumulador, elemento) => acumulador + elemento, 0)
-            // let accionUsuario = confirm("Tienes en el Carrito los siguientes productos\n\n" + lista.join('\n') + "\n\nMonto Total a Pagar: " + totalPagar + "\n\nPara vaciar el carrito presiona Cancelar")
             
             let pruebaTotal = document.getElementById("montoTotal")
             pruebaTotal.innerHTML = totalPagar*0.90;
 
-            /// Utlizamos sugarsyntax de operador ternario
-
-/*             if (accionUsuario == true) {
-                null
-            } else {
-                vaciarElCarrito();
-            } */
             openNav();
             
     }
@@ -439,9 +461,6 @@ function actualizaCarritoLateral () {
                     </div>
                     <div style="display: flex;">
                         <h6>$ ${precio}</h6>
-                    <div class="eliminarProductoEnCarrito">
-                        <i style="padding-left: 15px" class="fa fa-trash" aria-hidden="true"></i>
-                    </div>
                     </div>
                 </div>
                 
